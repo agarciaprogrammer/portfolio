@@ -8,7 +8,7 @@
   backdrop-filter: blur(30px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  height: 60px; /* Más fino que antes */
+  height: 60px;
 }
 
 .navbar.scrolled {
@@ -30,16 +30,16 @@
 .navbarLogo {
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--accent-primary);
-  text-shadow: 0 0 8px var(--accent-primary);
-  letter-spacing: 2px;
+  color: white;
+  text-shadow: 0 0 8px var(--accent-secondary);
+  letter-spacing: 5px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .navbarLogo:hover {
   color: var(--text-primary);
-  text-shadow: 0 0 12px var(--accent-primary);
+  text-shadow: 0 0 12px var(--accent-secondary);
   transform: scale(1.05);
 }
 
@@ -50,7 +50,7 @@
 }
 
 .navLink {
-  color: var(--text-secondary);
+  color: var(--text-primary);
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);

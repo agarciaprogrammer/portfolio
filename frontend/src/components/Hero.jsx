@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Code, Zap } from 'lucide-react';
 import styles from '../style/hero.module.css';
 
+
 const Hero = () => {
   const scrollToAbout = () => {
     document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
@@ -65,16 +66,6 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        <motion.p
-          className={styles.heroDescription}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-        >
-          Creando experiencias digitales que fusionan la innovación tecnológica 
-          con el diseño del futuro
-        </motion.p>
-
         <motion.div
           className={styles.heroButtons}
           initial={{ opacity: 0, y: 30 }}
@@ -89,15 +80,6 @@ const Hero = () => {
           >
             Conoce Mi Trabajo
           </motion.button>
-          
-          <motion.a
-            href="#projects"
-            className="cyber-button secondary"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Ver Proyectos
-          </motion.a>
         </motion.div>
       </div>
 

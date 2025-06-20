@@ -1,7 +1,3 @@
-
-
-
-/* Variables CSS para el tema profesional tipo Apple OS */
 :root {
   --bg-primary: #0a0a0a;
   --bg-secondary: #111111;
@@ -9,13 +5,13 @@
   --text-primary: #ffffff;
   --text-secondary: #b0b0b0;
   --text-muted: #888888;
-  --accent-primary: #00d4ff;
-  --accent-secondary: #ff6b9d;
-  --accent-tertiary: #ffd93d;
+  --accent-primary: #00ff40;
+  --accent-secondary: #3bd662;
+  --accent-tertiary: #70fd94;
   --border-color: #2a2a2a;
   --border-light: #3a3a3a;
-  --glow-primary: 0 0 15px rgba(0, 212, 255, 0.3);
-  --glow-secondary: 0 0 15px rgba(255, 107, 157, 0.2);
+  --glow-primary: 0 0 15px rgba(0, 255, 76, 0.3);
+  --glow-secondary: 0 0 15px rgba(0, 255, 136, 0.2);
   --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.3);
   --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.4);
   --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.5);
@@ -54,7 +50,6 @@ main {
   position: relative;
 }
 
-/* Scrollbar personalizada tipo Apple */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -74,7 +69,6 @@ main {
   background: var(--accent-secondary);
 }
 
-/* Efectos de texto profesionales */
 .cyber-text {
   text-shadow: 0 0 8px var(--accent-primary);
   letter-spacing: 1px;
@@ -93,13 +87,11 @@ main {
   }
 }
 
-/* Efectos de hover suaves tipo Apple */
 .hover-glow:hover {
   box-shadow: var(--glow-primary);
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Secciones */
 section {
   min-height: 100vh;
   padding: 60px 20px;
@@ -109,7 +101,6 @@ section {
   position: relative;
 }
 
-/* Contenedores */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -117,7 +108,6 @@ section {
   padding: 0 20px;
 }
 
-/* Botones profesionales tipo Apple */
 .cyber-button {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -133,7 +123,7 @@ section {
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   text-decoration: none;
   display: inline-block;
-  border-radius: 12px; /* Más redondeado tipo Apple */
+  border-radius: 12px;
   backdrop-filter: blur(20px);
 }
 
@@ -192,7 +182,6 @@ section {
   color: var(--bg-primary);
 }
 
-/* Estilos adicionales para componentes específicos */
 .navbar {
   position: fixed;
   top: 0;
@@ -314,7 +303,6 @@ section {
   color: var(--accent-primary);
 }
 
-/* Hero Section Styles */
 .hero-section {
   min-height: 100vh;
   display: flex;
@@ -468,7 +456,6 @@ section {
   color: var(--accent-tertiary);
 }
 
-/* About Section Styles */
 .about-section {
   min-height: 100vh;
   display: flex;
@@ -577,7 +564,6 @@ section {
   background: var(--accent-tertiary);
 }
 
-/* Features Grid */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1141,4 +1127,8 @@ section {
   html {
     font-size: 15px;
   }
+}
+
+.fp-watermark {
+  display: none !important;
 }

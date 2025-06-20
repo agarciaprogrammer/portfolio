@@ -3,6 +3,10 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ExternalLink, Github, Eye, Code } from 'lucide-react';
 import styles from '../style/projects.module.css';
+import inventorytechImg from '../assets/inventorytech.png';
+import budgetImg from '../assets/budget.png';
+import expoImg from '../assets/expo.png';
+import llamaImg from '../assets/llama.png';
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -22,35 +26,48 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'E-Commerce Platform',
-      description: 'Plataforma completa de comercio electrónico con React, Node.js y MongoDB. Incluye sistema de pagos, gestión de inventario y panel de administración.',
-      image: 'https://via.placeholder.com/400x250/00d4ff/0a0a0a?text=E-Commerce',
+      title: 'Budgety',
+      description: 'Una aplicación web para la gestión de presupuestos y gastos personales. Los usuarios pueden controlar sus ingresos, gastos fijos y diarios, y calcular presupuestos mensuales y diarios, lo que les ayuda a mantener la disciplina y el control financiero.',
+      image: budgetImg,
       category: 'web',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com/example',
-      featured: true
+      technologies: ['React', 'TypeScript', 'PostgreSQL', 'Node.js', 'Express'],
+      liveUrl: 'https://budget-tracker-fs.vercel.app/',
+      githubUrl: 'https://github.com/agarciaprogrammer/budget-tracker-fs',
+      featured: false
     },
     {
       id: 2,
-      title: 'Task Management App',
-      description: 'Aplicación de gestión de tareas con interfaz intuitiva y funcionalidades avanzadas como colaboración en tiempo real.',
-      image: 'https://via.placeholder.com/400x250/ff6b9d/0a0a0a?text=Task+App',
+      title: 'Expo-App',
+      description: 'Aplicación web Full Stack pensada para ayudar a organizar y administrar eventos. El sistema permite llevar registro de gastos, ingresos, ventas de entradas (preventa y taquilla), control de asistencia y distribución de ganancias.',
+      image: expoImg,
       category: 'web',
-      technologies: ['React', 'Firebase', 'TypeScript'],
-      liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com/example',
+      technologies: ['React', 'TypeScript', 'PostgreSQL', 'Node.js', 'Express'],
+      liveUrl: 'https://expo-arte-phi.vercel.app/',
+      githubUrl: 'https://github.com/agarciaprogrammer/ExpoArte',
       featured: false
     },
     {
       id: 3,
-      title: 'Weather API',
-      description: 'API RESTful para pronósticos del tiempo con integración de múltiples servicios meteorológicos y caché inteligente.',
-      image: 'https://via.placeholder.com/400x250/ffd93d/0a0a0a?text=Weather+API',
-      category: 'api',
-      technologies: ['Node.js', 'Express', 'Redis', 'Docker'],
-      liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com/example',
+      title: 'InventoryTech',
+      description: 'Sistema inteligente de gestión de inventario, diseñado para supermercados de barrio. Automatiza el control de stock, prevé pérdidas y ayuda a tomar decisiones basadas en datos reales.',
+      image: inventorytechImg,
+      category: 'web',
+      technologies: ['React', 'Node.js', 'SQL Server', 'Python'],
+      liveUrl: '',
+      githubUrl: 'https://github.com/agarciaprogrammer/InventoryTech',
+      featured: false
+    },
+    
+    
+    {
+      id: 4,
+      title: 'Llama-Chat',
+      description: 'Una aplicación web que permite a los usuarios chatear con un modelo de IA de llama. El modelo de IA es entrenado con un conjunto de datos de conversaciones y puede responder preguntas y tener conversaciones con los usuarios.',
+      image: llamaImg,
+      category: 'web',
+      technologies: ['OpenAI', 'Ollama', 'React', 'TypeScript'],
+      liveUrl: '',
+      githubUrl: 'https://github.com/agarciaprogrammer/ollama-chat',
       featured: false
     },
   ];
@@ -85,29 +102,8 @@ const Projects = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Una colección de proyectos que demuestran mi pasión por la innovación 
-            y la excelencia en el desarrollo de software
+            Una colección de proyectos que demuestran mi pasión por el desarrollo de software.
           </motion.p>
-
-          {/* Category Filter */}
-          <motion.div
-            className={styles.categoryFilter}
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            {categories.map((category) => (
-              <motion.button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`${styles.categoryBtn} ${selectedCategory === category.id ? styles.active : ''}`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {category.name}
-              </motion.button>
-            ))}
-          </motion.div>
         </motion.div>
 
         {/* Projects Grid */}
@@ -230,7 +226,7 @@ const Projects = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            ¿Tienes un proyecto en mente?
+            ¿Tenés un proyecto en mente?
           </motion.a>
         </motion.div>
       </div>

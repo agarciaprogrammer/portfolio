@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# svelte-kit
+.svelte-kit
+/build
+
+# dotenv environment variables file
+.env
+.env*.local

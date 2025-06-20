@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code, Database, Smartphone, Globe, Zap, Shield } from 'lucide-react';
+import { Code, Database, Smartphone, Globe, Zap, Shield, Code2, Code2Icon } from 'lucide-react';
 import styles from '../style/about.module.css';
 
 const About = () => {
@@ -11,11 +11,13 @@ const About = () => {
   });
 
   const skills = [
-    { name: 'React/Next.js', level: 90, color: 'primary' },
-    { name: 'Node.js/Express', level: 85, color: 'secondary' },
-    { name: 'TypeScript', level: 80, color: 'primary' },
-    { name: 'PostgreSQL/MongoDB', level: 75, color: 'tertiary' },
-    { name: 'Docker/AWS', level: 70, color: 'secondary' },
+    { name: 'Node.js/Express', level: 90, color: 'primary' },
+    { name: 'JavaScript/TypeScript', level: 90, color: 'secondary' },
+    { name: 'React.js', level: 85, color: 'primary' },
+    { name: 'Python/ML', level: 85, color: 'secondary' },
+    { name: 'Git', level: 80, color: 'primary' },
+    { name: 'PostgreSQL/MongoDB/ORM', level: 80, color: 'secondary' },
+    { name: 'Docker/AWS', level: 70, color: 'primary' },
   ];
 
   const features = [
@@ -32,9 +34,9 @@ const About = () => {
       color: 'primary'
     },
     {
-      icon: <Smartphone size={24} />,
-      title: 'Aplicaciones Móviles',
-      description: 'Desarrollo de apps nativas y híbridas con React Native.',
+      icon: <Code2Icon size={24} />,
+      title: 'Código Limpio',
+      description: 'Desarrollo de código limpio y mantenible.',
       color: 'primary'
     },
     {
@@ -84,9 +86,11 @@ const About = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Soy un desarrollador full-stack apasionado por crear soluciones digitales 
-              innovadoras. Con más de 5 años de experiencia, me especializo en el desarrollo 
-              de aplicaciones web modernas, APIs escalables y experiencias de usuario excepcionales.
+              Desarrollador Full Stack de Argentina, especializado en crear aplicaciones web escalables y de alto rendimiento. Mi stack principal incluye <strong>Node.js, Express, React.js y PostgreSQL</strong>.
+              <br/><br/>
+              Utilizo herramientas como <strong>Docker, Git y AWS</strong> para desplegar sistemas modulares y mantenibles. Disfruto colaborando en equipos bajo <strong>metodologías ágiles</strong> para construir soluciones robustas.
+              <br/><br/>
+              Apasionado por el aprendizaje continuo, busco unirme a proyectos desafiantes donde pueda aportar valor técnico y crecer profesionalmente.
             </motion.p>
             
             <motion.p

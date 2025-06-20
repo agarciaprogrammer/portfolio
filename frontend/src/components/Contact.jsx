@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, MessageCircle, ExternalLink, Send, CheckCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { Mail, MessageCircle, ExternalLink, Send, CheckCircle, XCircle } from 'lucide-react';
 import styles from '../style/contact.module.css';
 
 const Contact = () => {
+  const form = useRef();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -17,6 +19,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -25,44 +28,54 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simular envío de formulario
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 3000);
+    setError(null);
+
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    emailjs.sendForm(serviceID, templateID, form.current, publicKey)
+      .then((result) => {
+          console.log(result.text);
+          setIsSubmitted(true);
+          // Reset form after 3 seconds
+          setTimeout(() => {
+            setIsSubmitted(false);
+            setFormData({ name: '', email: '', message: '' });
+          }, 3000);
+      }, (error) => {
+          console.log(error.text);
+          setError('Hubo un error al enviar el mensaje.');
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   const contactMethods = [
     {
       icon: <Mail size={28} />,
       title: 'Email',
-      value: 'garcia@example.com',
-      link: 'mailto:garcia@example.com',
+      value: 'agustingarcia.it@gmail.com',
+      link: 'mailto:agustingarcia.it@gmail.com',
       color: 'primary'
     },
     {
       icon: <MessageCircle size={28} />,
       title: 'Fiverr',
-      value: '@garcia_dev',
-      link: 'https://www.fiverr.com/garcia_dev',
+      value: '@fullstackgarcia',
+      link: 'https://www.fiverr.com/fullstackgarcia',
       color: 'secondary',
       external: true
     },
     {
       icon: <MessageCircle size={28} />,
       title: 'LinkedIn',
-      value: 'linkedin.com/in/garcia',
-      link: 'https://linkedin.com/in/garcia',
+      value: 'linkedin.com/in/agustingarcia-it',
+      link: 'https://www.linkedin.com/in/agustingarcia-it/',
       color: 'tertiary',
       external: true
     }
@@ -94,8 +107,7 @@ const Contact = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            ¿Tienes un proyecto en mente? ¡Hablemos! Estoy disponible para 
-            colaboraciones, consultorías y desarrollo freelance
+            ¿Tenés un proyecto en mente? ¡Hablemos! Estoy disponible para colaboraciones, consultorías y desarrollo.
           </motion.p>
         </motion.div>
 
@@ -153,14 +165,14 @@ const Contact = () => {
               transition={{ duration: 0.8, delay: 1.2 }}
             >
               <h4 className={styles.fiverrTitle}>
-                ¿Necesitas un desarrollador freelance?
+                ¿Necesitás un desarrollador freelance?
               </h4>
               <p className={styles.fiverrDescription}>
-                Encuéntrame en Fiverr donde ofrezco servicios de desarrollo web, 
+                Encontrame en Fiverr y en LinkedIn donde ofrezco servicios de desarrollo web, 
                 aplicaciones móviles y APIs personalizadas.
               </p>
               <motion.a
-                href="https://www.fiverr.com/garcia_dev"
+                href="https://www.fiverr.com/fullstackgarcia"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="cyber-button fiverr-btn"
@@ -184,7 +196,7 @@ const Contact = () => {
               Envíame un mensaje
             </h3>
             
-            <form onSubmit={handleSubmit} className={styles.contactForm}>
+            <form ref={form} onSubmit={handleSubmit} className={styles.contactForm}>
               <motion.div
                 className={styles.formGroup}
                 initial={{ opacity: 0, y: 20 }}
@@ -235,7 +247,7 @@ const Contact = () => {
                   required
                   rows={6}
                   className={styles.formTextarea}
-                  placeholder="Cuéntame sobre tu proyecto..."
+                  placeholder="Contame sobre tu proyecto..."
                 />
               </motion.div>
 
@@ -259,6 +271,11 @@ const Contact = () => {
                     <CheckCircle size={18} />
                     ¡Mensaje enviado!
                   </>
+                ) : error ? (
+                  <>
+                    <XCircle size={18} />
+                    Error al enviar
+                  </>
                 ) : (
                   <>
                     <Send size={18} />
@@ -266,6 +283,7 @@ const Contact = () => {
                   </>
                 )}
               </motion.button>
+              {error && <p className={styles.errorMessage}>{error}</p>}
             </form>
           </motion.div>
         </div>
