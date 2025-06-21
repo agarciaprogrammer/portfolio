@@ -66,6 +66,15 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
+        <motion.p
+          className={styles.heroDescription}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+        >
+        Diseño y desarrollo aplicaciones escalables para resolver problemas reales, con foco en calidad y rendimiento.
+        </motion.p>
+
         <motion.div
           className={styles.heroButtons}
           initial={{ opacity: 0, y: 30 }}

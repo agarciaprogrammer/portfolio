@@ -11,14 +11,43 @@ const About = () => {
   });
 
   const skills = [
-    { name: 'Node.js/Express', level: 90, color: 'primary' },
-    { name: 'JavaScript/TypeScript', level: 90, color: 'secondary' },
-    { name: 'React.js', level: 85, color: 'primary' },
-    { name: 'Python/ML', level: 85, color: 'secondary' },
-    { name: 'Git', level: 80, color: 'primary' },
-    { name: 'PostgreSQL/MongoDB/ORM', level: 80, color: 'secondary' },
-    { name: 'Docker/AWS', level: 70, color: 'primary' },
+    {
+      name: 'Node.js / Express – APIs REST y autenticación con JWT',
+      level: 90,
+      color: 'primary',
+    },
+    {
+      name: 'JavaScript / TypeScript – Tipado fuerte en frontend y backend',
+      level: 90,
+      color: 'secondary',
+    },
+    {
+      name: 'React.js – Hooks y componentes reutilizables',
+      level: 85,
+      color: 'primary',
+    },
+    {
+      name: 'Python / ML – Scripts de automatización y prototipos de modelos ML',
+      level: 85,
+      color: 'secondary',
+    },
+    {
+      name: 'Git – Flujos de trabajo con GitHub y control de versiones diario',
+      level: 80,
+      color: 'primary',
+    },
+    {
+      name: 'PostgreSQL / MongoDB / ORM – Modelado y consultas eficientes',
+      level: 80,
+      color: 'secondary',
+    },
+    {
+      name: 'Docker / AWS – Deploy básico con contenedores y cloud',
+      level: 70,
+      color: 'primary',
+    },
   ];
+  
 
   const features = [
     {
@@ -86,22 +115,21 @@ const About = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Desarrollador Full Stack de Argentina, especializado en crear aplicaciones web escalables y de alto rendimiento. Mi stack principal incluye <strong>Node.js, Express, React.js y PostgreSQL</strong>.
+              Soy Ingeniero en Sistemas y Desarrollador Full Stack de Argentina, especializado en crear aplicaciones web escalables y de alto rendimiento. Mi stack principal incluye <strong>Node.js, Express, React.js y PostgreSQL</strong>.
               <br/><br/>
-              Utilizo herramientas como <strong>Docker, Git y AWS</strong> para desplegar sistemas modulares y mantenibles. Disfruto colaborando en equipos bajo <strong>metodologías ágiles</strong> para construir soluciones robustas.
+              Trabajo con herramientas como <strong>Docker, Git y AWS</strong> para construir sistemas modulares y mantenibles.
               <br/><br/>
-              Apasionado por el aprendizaje continuo, busco unirme a proyectos desafiantes donde pueda aportar valor técnico y crecer profesionalmente.
+              Apasionado por el aprendizaje continuo y el código limpio, busco sumarme a proyectos desafiantes donde pueda aportar valor técnico.
             </motion.p>
-            
+
             <motion.p
               className={styles.aboutDescription}
+              style={{ fontWeight: 800}}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Mi enfoque se centra en escribir código limpio, mantenible y escalable, 
-              utilizando las mejores prácticas y tecnologías emergentes para entregar 
-              productos de alta calidad.
+              Si estás buscando un desarrollador comprometido con la calidad, ¡conversemos!
             </motion.p>
 
             {/* Skills Section */}
@@ -138,6 +166,8 @@ const About = () => {
                         transition={{ duration: 1, delay: 1.2 + index * 0.1 }}
                       />
                     </div>
+                    {/* NUEVO BLOQUE: descripción de la experiencia */}
+                    <p className={styles.skillDesc}>{skill.experience}</p>
                   </motion.div>
                 ))}
               </div>
