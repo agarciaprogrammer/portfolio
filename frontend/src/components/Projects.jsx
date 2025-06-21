@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ExternalLink, Github, Eye, Code } from 'lucide-react';
 import styles from '../style/projects.module.css';
+import { useTranslation } from '../hooks/useTranslation';
 import inventorytechImg from '../assets/inventorytech.png';
 import budgetImg from '../assets/budget.png';
 import expoImg from '../assets/expo.png';
@@ -15,19 +16,20 @@ const Projects = () => {
   });
 
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const { t } = useTranslation();
 
   const categories = [
-    { id: 'all', name: 'Todos' },
-    { id: 'web', name: 'Web Apps' },
-    { id: 'mobile', name: 'Mobile' },
-    { id: 'api', name: 'APIs' },
+    { id: 'all', name: t('categoryAll') },
+    { id: 'web', name: t('categoryWeb') },
+    { id: 'mobile', name: t('categoryMobile') },
+    { id: 'api', name: t('categoryApi') },
   ];
 
   const projects = [
     {
       id: 1,
       title: 'Budgety',
-      description: 'Una aplicación web para la gestión de presupuestos y gastos personales. Los usuarios pueden controlar sus ingresos, gastos fijos y diarios, y calcular presupuestos mensuales y diarios, lo que les ayuda a mantener la disciplina y el control financiero.',
+      description: t('projectBudgetyDesc'),
       image: budgetImg,
       category: 'web',
       technologies: ['React', 'TypeScript', 'PostgreSQL', 'Node.js', 'Express'],
@@ -38,7 +40,7 @@ const Projects = () => {
     {
       id: 2,
       title: 'Expo-App',
-      description: 'Aplicación web Full Stack pensada para ayudar a organizar y administrar eventos. El sistema permite llevar registro de gastos, ingresos, ventas de entradas (preventa y taquilla), control de asistencia y distribución de ganancias.',
+      description: t('projectExpoDesc'),
       image: expoImg,
       category: 'web',
       technologies: ['React', 'TypeScript', 'PostgreSQL', 'Node.js', 'Express'],
@@ -49,7 +51,7 @@ const Projects = () => {
     {
       id: 3,
       title: 'InventoryTech',
-      description: 'Sistema inteligente de gestión de inventario, diseñado para supermercados de barrio. Automatiza el control de stock, prevé pérdidas y ayuda a tomar decisiones basadas en datos reales.',
+      description: t('projectInventoryDesc'),
       image: inventorytechImg,
       category: 'web',
       technologies: ['React', 'Node.js', 'SQL Server', 'Python'],
@@ -62,7 +64,7 @@ const Projects = () => {
     {
       id: 4,
       title: 'Llama-Chat',
-      description: 'Una aplicación web que permite a los usuarios chatear con un modelo de IA de llama. El modelo de IA es entrenado con un conjunto de datos de conversaciones y puede responder preguntas y tener conversaciones con los usuarios.',
+      description: t('projectLlamaDesc'),
       image: llamaImg,
       category: 'web',
       technologies: ['OpenAI', 'Ollama', 'React', 'TypeScript'],
@@ -93,7 +95,7 @@ const Projects = () => {
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            PROYECTOS
+            {t('projectsTitle')}
           </motion.h2>
           
           <motion.p
@@ -102,7 +104,7 @@ const Projects = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Una colección de proyectos que demuestran mi pasión por el desarrollo de software.
+            {t('projectsSubtitle')}
           </motion.p>
         </motion.div>
 
@@ -134,7 +136,7 @@ const Projects = () => {
                 {/* Featured Badge */}
                 {project.featured && (
                   <div className={styles.featuredBadge}>
-                    Destacado
+                    {t('featured')}
                   </div>
                 )}
 
@@ -195,7 +197,7 @@ const Projects = () => {
                     whileHover={{ x: 5 }}
                   >
                     <Eye size={14} />
-                    Ver Demo
+                    {t('viewDemo')}
                   </motion.a>
                   <motion.a
                     href={project.githubUrl}
@@ -205,7 +207,7 @@ const Projects = () => {
                     whileHover={{ x: 5 }}
                   >
                     <Code size={14} />
-                    Ver Código
+                    {t('viewCode')}
                   </motion.a>
                 </div>
               </div>
@@ -226,7 +228,7 @@ const Projects = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            ¿Tenés un proyecto en mente?
+            {t('projectsCta')}
           </motion.a>
         </motion.div>
       </div>

@@ -2,9 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Code, Zap } from 'lucide-react';
 import styles from '../style/hero.module.css';
-
+import { useTranslation } from '../hooks/useTranslation';
 
 const Hero = () => {
+  const { t } = useTranslation();
+  
   const scrollToAbout = () => {
     document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
   };
@@ -60,7 +62,7 @@ const Hero = () => {
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              SOFTWARE ENGINEER | FULL-STACK DEVELOPER
+              {t('heroSubtitle')}
             </motion.h2>
             <Zap className={`${styles.heroIcon} ${styles.secondary}`} size={28} />
           </motion.div>
@@ -72,7 +74,7 @@ const Hero = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-        Diseño y desarrollo aplicaciones escalables para resolver problemas reales, con foco en calidad y rendimiento.
+          {t('heroDescription')}
         </motion.p>
 
         <motion.div
@@ -87,7 +89,7 @@ const Hero = () => {
             whileTap={{ scale: 0.95 }}
             onClick={scrollToAbout}
           >
-            Conoce Mi Trabajo
+            {t('heroCta')}
           </motion.button>
         </motion.div>
       </div>

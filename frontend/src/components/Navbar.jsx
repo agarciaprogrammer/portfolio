@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import styles from '../style/navbar.module.css';
+import { useTranslation } from '../hooks/useTranslation';
+import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useTranslation();
+  const { toggleLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,7 +51,7 @@ const Navbar = () => {
               onClick={() => scrollToSection('about')}
               whileHover={{ y: -2 }}
             >
-              Sobre Mí
+              {t('about')}
             </motion.button>
           </li>
           <li>
@@ -56,7 +60,7 @@ const Navbar = () => {
               onClick={() => scrollToSection('projects')}
               whileHover={{ y: -2 }}
             >
-              Proyectos
+              {t('projects')}
             </motion.button>
           </li>
           <li>
@@ -65,7 +69,19 @@ const Navbar = () => {
               onClick={() => scrollToSection('contact')}
               whileHover={{ y: -2 }}
             >
-              Contacto
+              {t('contact')}
+            </motion.button>
+          </li>
+          <li>
+            <motion.button
+              className={styles.languageBtn}
+              onClick={toggleLanguage}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              title={t('language') === 'EN' ? 'Cambiar a Inglés' : 'Change to Spanish'}
+            >
+              <Globe size={16} />
+              <span>{t('language')}</span>
             </motion.button>
           </li>
         </ul>
@@ -92,21 +108,29 @@ const Navbar = () => {
             onClick={() => scrollToSection('about')}
             whileHover={{ x: 10 }}
           >
-            Sobre Mí
+            {t('about')}
           </motion.button>
           <motion.button
             className={styles.mobileNavLink}
             onClick={() => scrollToSection('projects')}
             whileHover={{ x: 10 }}
           >
-            Proyectos
+            {t('projects')}
           </motion.button>
           <motion.button
             className={styles.mobileNavLink}
             onClick={() => scrollToSection('contact')}
             whileHover={{ x: 10 }}
           >
-            Contacto
+            {t('contact')}
+          </motion.button>
+          <motion.button
+            className={styles.mobileLanguageBtn}
+            onClick={toggleLanguage}
+            whileHover={{ x: 10 }}
+          >
+            <Globe size={16} />
+            <span>{t('language')}</span>
           </motion.button>
         </div>
       </motion.div>

@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import emailjs from '@emailjs/browser';
 import { Mail, MessageCircle, ExternalLink, Send, CheckCircle, XCircle } from 'lucide-react';
 import styles from '../style/contact.module.css';
+import { useTranslation } from '../hooks/useTranslation';
 
 const Contact = () => {
   const form = useRef();
@@ -11,6 +12,8 @@ const Contact = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+  
+  const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -48,7 +51,7 @@ const Contact = () => {
           }, 3000);
       }, (error) => {
           console.log(error.text);
-          setError('Hubo un error al enviar el mensaje.');
+          setError(t('formErrorMessage'));
       })
       .finally(() => {
         setIsSubmitting(false);
@@ -58,14 +61,14 @@ const Contact = () => {
   const contactMethods = [
     {
       icon: <Mail size={28} />,
-      title: 'Email',
+      title: t('contactEmail'),
       value: 'agustingarcia.it@gmail.com',
       link: 'mailto:agustingarcia.it@gmail.com',
       color: 'primary'
     },
     {
       icon: <MessageCircle size={28} />,
-      title: 'Fiverr',
+      title: t('contactFiverr'),
       value: '@fullstackgarcia',
       link: 'https://www.fiverr.com/fullstackgarcia',
       color: 'secondary',
@@ -73,7 +76,7 @@ const Contact = () => {
     },
     {
       icon: <MessageCircle size={28} />,
-      title: 'LinkedIn',
+      title: t('contactLinkedin'),
       value: 'linkedin.com/in/agustingarcia-it',
       link: 'https://www.linkedin.com/in/agustingarcia-it/',
       color: 'tertiary',
@@ -98,7 +101,7 @@ const Contact = () => {
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            CONTACTO
+            {t('contactTitle')}
           </motion.h2>
           
           <motion.p
@@ -107,7 +110,7 @@ const Contact = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            ¿Tenés un proyecto en mente? ¡Hablemos! Estoy disponible para colaboraciones, consultorías y desarrollo.
+            {t('contactSubtitle')}
           </motion.p>
         </motion.div>
 
@@ -120,7 +123,7 @@ const Contact = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <h3 className={styles.methodsTitle}>
-              Conectemos
+              {t('contactMethodsTitle')}
             </h3>
             
             <div className={styles.methodsList}>
@@ -165,11 +168,10 @@ const Contact = () => {
               transition={{ duration: 0.8, delay: 1.2 }}
             >
               <h4 className={styles.fiverrTitle}>
-                ¿Necesitás un desarrollador freelance?
+                {t('fiverrTitle')}
               </h4>
               <p className={styles.fiverrDescription}>
-                Encontrame en Fiverr y en LinkedIn donde ofrezco servicios de desarrollo web, 
-                aplicaciones móviles y APIs personalizadas.
+                {t('fiverrDescription')}
               </p>
               <motion.a
                 href="https://www.fiverr.com/fullstackgarcia"
@@ -179,7 +181,7 @@ const Contact = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Ver mi perfil en Fiverr
+                {t('fiverrButton')}
                 <ExternalLink size={18} />
               </motion.a>
             </motion.div>
@@ -193,7 +195,7 @@ const Contact = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <h3 className={styles.formTitle}>
-              Envíame un mensaje
+              {t('contactFormTitle')}
             </h3>
             
             <form ref={form} onSubmit={handleSubmit} className={styles.contactForm}>
@@ -203,7 +205,7 @@ const Contact = () => {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 1 }}
               >
-                <label className={styles.formLabel}>Nombre</label>
+                <label className={styles.formLabel}>{t('formName')}</label>
                 <input
                   type="text"
                   name="name"
@@ -211,7 +213,7 @@ const Contact = () => {
                   onChange={handleInputChange}
                   required
                   className={styles.formInput}
-                  placeholder="Tu nombre"
+                  placeholder={t('formNamePlaceholder')}
                 />
               </motion.div>
 
@@ -221,7 +223,7 @@ const Contact = () => {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 1.1 }}
               >
-                <label className={styles.formLabel}>Email</label>
+                <label className={styles.formLabel}>{t('formEmail')}</label>
                 <input
                   type="email"
                   name="email"
@@ -229,7 +231,7 @@ const Contact = () => {
                   onChange={handleInputChange}
                   required
                   className={styles.formInput}
-                  placeholder="tu@email.com"
+                  placeholder={t('formEmailPlaceholder')}
                 />
               </motion.div>
 
@@ -239,7 +241,7 @@ const Contact = () => {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 1.2 }}
               >
-                <label className={styles.formLabel}>Mensaje</label>
+                <label className={styles.formLabel}>{t('formMessage')}</label>
                 <textarea
                   name="message"
                   value={formData.message}
@@ -247,7 +249,7 @@ const Contact = () => {
                   required
                   rows={6}
                   className={styles.formTextarea}
-                  placeholder="Contame sobre tu proyecto..."
+                  placeholder={t('formMessagePlaceholder')}
                 />
               </motion.div>
 
@@ -264,22 +266,22 @@ const Contact = () => {
                 {isSubmitting ? (
                   <>
                     <div className={styles.loadingSpinner}></div>
-                    Enviando...
+                    {t('formSending')}
                   </>
                 ) : isSubmitted ? (
                   <>
                     <CheckCircle size={18} />
-                    ¡Mensaje enviado!
+                    {t('formSent')}
                   </>
                 ) : error ? (
                   <>
                     <XCircle size={18} />
-                    Error al enviar
+                    {t('formError')}
                   </>
                 ) : (
                   <>
                     <Send size={18} />
-                    Enviar Mensaje
+                    {t('formSubmit')}
                   </>
                 )}
               </motion.button>

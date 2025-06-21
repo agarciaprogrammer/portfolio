@@ -3,46 +3,49 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Code, Database, Smartphone, Globe, Zap, Shield, Code2, Code2Icon } from 'lucide-react';
 import styles from '../style/about.module.css';
+import { useTranslation } from '../hooks/useTranslation';
 
 const About = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+  
+  const { t } = useTranslation();
 
   const skills = [
     {
-      name: 'Node.js / Express – APIs REST y autenticación con JWT',
+      name: t('skillNodejs'),
       level: 90,
       color: 'primary',
     },
     {
-      name: 'JavaScript / TypeScript – Tipado fuerte en frontend y backend',
+      name: t('skillJavascript'),
       level: 90,
       color: 'secondary',
     },
     {
-      name: 'React.js – Hooks y componentes reutilizables',
+      name: t('skillReact'),
       level: 85,
       color: 'primary',
     },
     {
-      name: 'Python / ML – Scripts de automatización y prototipos de modelos ML',
+      name: t('skillPython'),
       level: 85,
       color: 'secondary',
     },
     {
-      name: 'Git – Flujos de trabajo con GitHub y control de versiones diario',
+      name: t('skillGit'),
       level: 80,
       color: 'primary',
     },
     {
-      name: 'PostgreSQL / MongoDB / ORM – Modelado y consultas eficientes',
+      name: t('skillDatabase'),
       level: 80,
       color: 'secondary',
     },
     {
-      name: 'Docker / AWS – Deploy básico con contenedores y cloud',
+      name: t('skillDevOps'),
       level: 70,
       color: 'primary',
     },
@@ -52,38 +55,38 @@ const About = () => {
   const features = [
     {
       icon: <Code size={24} />,
-      title: 'Desarrollo Full-Stack',
-      description: 'Experiencia completa en frontend y backend con tecnologías modernas.',
+      title: t('featureFullStack'),
+      description: t('featureFullStackDesc'),
       color: 'primary'
     },
     {
       icon: <Database size={24} />,
-      title: 'Arquitectura de Datos',
-      description: 'Diseño de bases de datos escalables y APIs RESTful optimizadas.',
+      title: t('featureArchitecture'),
+      description: t('featureArchitectureDesc'),
       color: 'primary'
     },
     {
       icon: <Code2Icon size={24} />,
-      title: 'Código Limpio',
-      description: 'Desarrollo de código limpio y mantenible.',
+      title: t('featureCleanCode'),
+      description: t('featureCleanCodeDesc'),
       color: 'primary'
     },
     {
       icon: <Globe size={24} />,
-      title: 'Despliegue & DevOps',
-      description: 'Configuración de CI/CD y despliegue en la nube.',
+      title: t('featureDevOps'),
+      description: t('featureDevOpsDesc'),
       color: 'primary'
     },
     {
       icon: <Zap size={24} />,
-      title: 'Performance',
-      description: 'Optimización de rendimiento y experiencia de usuario.',
+      title: t('featurePerformance'),
+      description: t('featurePerformanceDesc'),
       color: 'primary'
     },
     {
       icon: <Shield size={24} />,
-      title: 'Seguridad',
-      description: 'Implementación de mejores prácticas de seguridad web.',
+      title: t('featureSecurity'),
+      description: t('featureSecurityDesc'),
       color: 'primary'
     }
   ];
@@ -106,7 +109,7 @@ const About = () => {
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Sobre Mí
+              {t('aboutTitle')}
             </motion.h2>
             
             <motion.p
@@ -115,11 +118,11 @@ const About = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Soy Ingeniero en Sistemas y Desarrollador Full Stack de Argentina, especializado en crear aplicaciones web escalables y de alto rendimiento. Mi stack principal incluye <strong>Node.js, Express, React.js y PostgreSQL</strong>.
+              {t('aboutDescription')}
               <br/><br/>
-              Trabajo con herramientas como <strong>Docker, Git y AWS</strong> para construir sistemas modulares y mantenibles.
+              {t('aboutDescription2')}
               <br/><br/>
-              Apasionado por el aprendizaje continuo y el código limpio, busco sumarme a proyectos desafiantes donde pueda aportar valor técnico.
+              {t('aboutDescription3')}
             </motion.p>
 
             <motion.p
@@ -129,7 +132,7 @@ const About = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Si estás buscando un desarrollador comprometido con la calidad, ¡conversemos!
+              {t('aboutCallToAction')}
             </motion.p>
 
             {/* Skills Section */}
@@ -140,7 +143,7 @@ const About = () => {
               transition={{ duration: 0.8, delay: 0.8 }}
             >
               <h3 className={styles.skillsTitle}>
-                Habilidades Técnicas
+                {t('skillsTitle')}
               </h3>
               
               <div className={styles.skillsList}>
